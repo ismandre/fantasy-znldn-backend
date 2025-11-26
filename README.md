@@ -34,4 +34,16 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 
 ### API Docs
 
-[http://localhost:9000/docs](http://localhost:9000/docs)
+[http://localhost:9000/docs](http://localhost:9000/docs
+
+## MVP API Proposal
+
+- POST /users
+- POST /auth/login
+- GET /players
+- GET /players/{player_id}
+- GET /matches/upcoming
+- GET /matches/{match_id}
+- GET /users/{user_id}/squad
+- POST /users/{user_id}/squad
+- GET /leaderboard
