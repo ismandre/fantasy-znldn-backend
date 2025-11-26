@@ -1,0 +1,81 @@
+Table users {
+  id integer [primary key]
+  first_name varchar
+  last_name varchar
+  public_username varchar
+  secret_username varchar
+  created_at timestamp
+}
+
+Table user_squads {
+  id integer [primary key]
+  user_id integer
+  player_id integer
+  created_at timestamp
+}
+
+Table players {
+  id integer [primary key]
+  name varchar
+  position varchar // GK, DEF, MID, FWD
+  club_id integer
+  squad_id integer
+}
+
+Table club {
+  id integer [primary key]
+  name integer
+}
+
+Ref squad_players: players.squad_id <> user_squads.id
+Ref club_players: players.club_id > club.id
+Ref users_squad: user_squads.user_id > users.id
+
+
+Table matches {
+  id integer [primary key]
+  home_team_id integer
+  away_team_id integer
+  start_time timestamp
+  status varchar
+}
+
+Ref: club.id < matches.home_team_id
+Ref: club.id < matches.away_team_id
+
+Table match_events {
+  id integer [primary key]
+  match_id integer
+  player_id integer
+  minute integer
+  type varchar // needs to be aligned with scoring_rules.event_type
+}
+
+Ref: matches.id < match_events.match_id
+
+Table user_points {
+  id integer [primary key]
+  user_squad_id integer
+  match_id integer
+  points integer
+}
+
+Ref: user_points.user_squad_id > user_squads.id
+Ref: user_points.match_id > matches.id
+
+
+Table scoring_rules {
+  id integer [primary key]
+  event_type varchar
+  points integer
+}
+
+Table user_rankings {
+  id integer [primary key]
+  user_id integer
+  total_points integer
+  rank integer
+  last_updated_at timestamp
+}
+
+Ref: user_rankings.user_id > users.id
