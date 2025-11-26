@@ -21,12 +21,17 @@ Provides API endpoints, database, admin panel, and data fetching from SofaScore.
 * Calculate points and leaderboard
 * Simple admin panel
 
-## Run (development)
+
+## Running the Application
+
+To run the application in development mode, use the command below:
 
 ```bash
-uvicorn app.main:app --reload
+python src/main.py
 ```
 
-## API Docs
+The API will be available at [http://localhost:9000](http://localhost:9000).
 
-[http://localhost:8000/docs](http://localhost:8000/docs)
+### API Docs
+
+[http://localhost:9000/docs](http://localhost:9000/docs)
