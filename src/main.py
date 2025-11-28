@@ -10,7 +10,7 @@ settings: Settings = get_settings()
 
 def create_app(
 ) -> FastAPI:
-    app = FastAPI(title="Basket Service")
+    app = FastAPI(title="ZNLDN Service")
     app.include_router(router)
     return app
 
