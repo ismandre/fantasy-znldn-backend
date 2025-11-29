@@ -66,7 +66,7 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
   - [ ] connect service layer to repository layer
   - [ ] implement actual repository layer
 - [ ] GET  /matches/upcoming
-  - [X] define ednpoint
+  - [X] define endpoint
   - [ ] define service layer
   - [ ] define repository layer
   - [ ] connect endpoint to service layer
