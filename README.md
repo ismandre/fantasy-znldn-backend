@@ -40,6 +40,7 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 - [ ] POST /users
   - [X] define endpoint
   - [ ] define service layer
+  - [ ] define serializers and schemas
   - [ ] define repository layer
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
@@ -47,6 +48,7 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 - [ ] POST /auth/login
   - [X] define endpoint
   - [ ] define service layer
+  - [ ] define serializers and schemas
   - [ ] define repository layer
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
@@ -54,6 +56,7 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 - [ ] GET  /players
   - [X] define endpoint
   - [ ] define service layer
+  - [ ] define serializers and schemas
   - [ ] define repository layer
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
@@ -61,6 +64,7 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 - [ ] GET  /players/{player_id}
   - [X] define endpoint
   - [ ] define service layer
+  - [ ] define serializers and schemas
   - [ ] define repository layer
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
@@ -68,6 +72,7 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 - [ ] GET  /matches/upcoming
   - [X] define endpoint
   - [ ] define service layer
+  - [ ] define serializers and schemas
   - [ ] define repository layer
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
@@ -75,6 +80,7 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 - [ ] GET  /matches/{match_id}
   - [X] define endpoint
   - [ ] define service layer
+  - [ ] define serializers and schemas
   - [ ] define repository layer
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
@@ -82,6 +88,7 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 - [ ] GET  /users/{user_id}/squad
   - [X] define endpoint
   - [ ] define service layer
+  - [ ] define serializers and schemas
   - [ ] define repository layer
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
@@ -89,6 +96,7 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 - [ ] POST /users/{user_id}/squad
   - [X] define endpoint
   - [ ] define service layer
+  - [ ] define serializers and schemas
   - [ ] define repository layer
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
@@ -96,6 +104,7 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 - [ ] GET  /leaderboard
   - [X] define endpoint
   - [ ] define service layer
+  - [ ] define serializers and schemas
   - [ ] define repository layer
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
