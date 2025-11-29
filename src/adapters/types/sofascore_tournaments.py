@@ -19,3 +19,11 @@ class UniqueTournamentResponse(TypedDict):
 
 class UniqueTournamentSeasonsResponse(TypedDict):
     seasons: list[TournamentSeasonResponse]
+
+
+class TournamentRoundResponse(TypedDict):
+    round: int
+
+class UniqueTournamentSeasonRoundsResponse(TypedDict):
+    currentRound: TournamentRoundResponse
+    rounds: list[TournamentRoundResponse]

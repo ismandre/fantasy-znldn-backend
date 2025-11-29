@@ -1,8 +1,10 @@
 from typing import cast, override
 
-from adapters.types.sofascore_tournaments import UniqueTournamentResponse, UniqueTournamentSeasonsResponse
+from adapters.types.sofascore_tournaments import UniqueTournamentResponse, UniqueTournamentSeasonsResponse, \
+    UniqueTournamentSeasonRoundsResponse
 from domain.errors.http_client import HTTPClientError
 from domain.errors.tournament import TournamentNotFoundError
+from domain.models.round import TournamentRound
 from domain.models.tournament import Tournament, TournamentSeason
 from domain.ports.http_client import HttpClient
 from domain.ports.tournament_repository import TournamentRepository
@@ -56,6 +58,31 @@ class SofascoreTournamentRepository(TournamentRepository):
             raise
         return self._map_response_to_torunament_seasons_domain_model(response_data)
 
+    @override
+    async def get_tournament_rounds(self, tournament_id: int, season_id: int) -> dict[str, TournamentRound | list[TournamentRound]]:
+        try:
+            response = await self.http_client.get(f"https://api.sofascore.com/api/v1/unique-tournament/{tournament_id}/season/{season_id}/rounds")
+            print(f"Response: {response}")
+            if "error" in response:
+                if response["error"].get("code") == 404:
+                    raise TournamentNotFoundError(f"Tournament with ID {tournament_id} not found")
+            response_data = cast(
+                UniqueTournamentSeasonRoundsResponse,
+                response
+            )
+        except HTTPClientError as e:
+            print(f"HTTP error when fetching info for tournament {tournament_id}: {e}")
+            raise
+        except Exception as e:
+            print(f"Unexpected error when fetching info for tournament {tournament_id}: {e}")
+            raise
+        return self._map_response_to_tournament_season_rounds_model(response_data)
+
+    def _map_response_to_tournament_season_rounds_model(self, response_data: UniqueTournamentSeasonRoundsResponse) -> dict[str, TournamentRound | list[TournamentRound]]:
+        return {
+            "current_round": TournamentRound(round=response_data["currentRound"]["round"]),
+            "rounds": [TournamentRound(round=round["round"]) for round in response_data["rounds"]]
+        }
 
     def _map_response_to_tournament_domain_model(self, response_data: UniqueTournamentResponse) -> Tournament:
         return Tournament(
