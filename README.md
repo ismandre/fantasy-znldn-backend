@@ -109,6 +109,22 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
   - [ ] implement actual repository layer
+- [X] GET /tournament/{tournament_id}  
+  - [X] define endpoint
+  - [X] define service layer
+  - [X] define serializers and schemas
+  - [X] define repository layer
+  - [X] connect endpoint to service layer
+  - [X] connect service layer to repository layer
+  - [X] implement actual repository layer
+- [X] GET /tournament/{tournament_id}/seasons  
+  - [X] define endpoint
+  - [X] define service layer
+  - [X] define serializers and schemas
+  - [X] define repository layer
+  - [X] connect endpoint to service layer
+  - [X] connect service layer to repository layer
+  - [X] implement actual repository layer
 
 
 
