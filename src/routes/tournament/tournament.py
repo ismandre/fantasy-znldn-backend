@@ -3,6 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, status
 
 from domain.errors.tournament import TournamentNotFoundError
+from serializers.season import SeasonSerializer
 from serializers.tournament import TournamentSerializer
 from services.deps import get_tournament_service
 from services.tournament import TournamentService
@@ -26,3 +27,20 @@ async def get_tournament_info(
     except TournamentNotFoundError as e:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
     return TournamentSerializer.model_validate(tournament)
+
+
+@router.get(
+    path="/{tournament_id}/seasons",
+    name="Get tournament seasons",
+    response_model=list[SeasonSerializer],
+    status_code=status.HTTP_200_OK
+)
+async def get_tournament_seasons(
+        tournament_id: int,
+        service: Annotated[TournamentService, Depends(get_tournament_service)]
+):
+    try:
+        seasons = await service.get_tournament_seasons(tournament_id)
+    except TournamentNotFoundError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
+    return [SeasonSerializer.model_validate(season) for season in seasons]
