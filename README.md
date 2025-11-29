@@ -109,3 +109,24 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
   - [ ] connect endpoint to service layer
   - [ ] connect service layer to repository layer
   - [ ] implement actual repository layer
+
+
+
+### SofScore API
+
+
+1. Retrieve tournament information from
+- https://api.sofascore.com/api/v1/unique-tournament/16338
+
+2. Retrieve season information for that tournament from
+- https://api.sofascore.com/api/v1/unique-tournament/16338/seasons
+
+3. Based on the latest season from step 2., retrieve rounds for that season
+- https://api.sofascore.com/api/v1/unique-tournament/16338/season/81183/rounds
+
+4. For each round, retrieve matches for that round
+- https://api.sofascore.com/api/v1/unique-tournament/16338/season/81183/events/round/10
+
+5. For each match, retrieve incidents (goals, cards, ...) happened at that match
+
+- https://api.sofascore.com/api/v1/event/14526964/incidents
