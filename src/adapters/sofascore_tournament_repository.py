@@ -1,9 +1,9 @@
 from typing import cast, override
 
-from adapters.types.sofascore_tournaments import UniqueTournamentResponse
+from adapters.types.sofascore_tournaments import UniqueTournamentResponse, UniqueTournamentSeasonsResponse
 from domain.errors.http_client import HTTPClientError
 from domain.errors.tournament import TournamentNotFoundError
-from domain.models.tournament import Tournament
+from domain.models.tournament import Tournament, TournamentSeason
 from domain.ports.http_client import HttpClient
 from domain.ports.tournament_repository import TournamentRepository
 
@@ -19,12 +19,10 @@ class SofascoreTournamentRepository(TournamentRepository):
             if "error" in response:
                 if response["error"].get("code") == 404:
                     raise TournamentNotFoundError(f"Tournament with ID {tournament_id} not found")
-            print(f"Response: {response}")
             response_data = cast(
                 UniqueTournamentResponse,
                 response
            )
-            print(f"Tournament data: {response_data}")
         except HTTPClientError as e:
             if "404" in str(e):
                 print(f"Tournament with ID {tournament_id} not found")
@@ -34,12 +32,44 @@ class SofascoreTournamentRepository(TournamentRepository):
         except Exception as e:
             print(f"Unexpected error when fetching info for tournament {tournament_id}: {e}")
             raise
-        return self._map_response_to_domain_model(response_data)
+        return self._map_response_to_tournament_domain_model(response_data)
 
-    def _map_response_to_domain_model(self, response_data: UniqueTournamentResponse) -> Tournament:
+    @override
+    async def get_tournament_seasons(self, tournament_id: int) -> list[TournamentSeason]:
+        try:
+            response = await self.http_client.get(f"https://api.sofascore.com/api/v1/unique-tournament/{tournament_id}/seasons")
+            if "error" in response:
+                if response["error"].get("code") == 404:
+                    raise TournamentNotFoundError(f"Tournament with ID {tournament_id} not found")
+            response_data = cast(
+                UniqueTournamentSeasonsResponse,
+                response
+            )
+        except HTTPClientError as e:
+            if "404" in str(e):
+                print(f"Tournament with ID {tournament_id} not found")
+                raise TournamentNotFoundError
+            print(f"HTTP error when fetching info for tournament {tournament_id}: {e}")
+            raise
+        except Exception as e:
+            print(f"Unexpected error when fetching info for tournament {tournament_id}: {e}")
+            raise
+        return self._map_response_to_torunament_seasons_domain_model(response_data)
+
+
+    def _map_response_to_tournament_domain_model(self, response_data: UniqueTournamentResponse) -> Tournament:
         return Tournament(
             id=response_data["uniqueTournament"]["id"],
             name=response_data["uniqueTournament"]["name"],
             has_rounds=response_data["uniqueTournament"]["hasRounds"],
             start_date=response_data["uniqueTournament"]["startDateTimestamp"]
         )
+
+    def _map_response_to_torunament_seasons_domain_model(self, response_data: UniqueTournamentSeasonsResponse) -> list[TournamentSeason]:
+        return [
+            TournamentSeason(
+                id=season["id"],
+                name=season["name"],
+                year=season["year"]
+            ) for season in response_data["seasons"]
+        ]
