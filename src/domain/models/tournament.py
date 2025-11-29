@@ -7,3 +7,9 @@ class Tournament:
     name: str
     has_rounds: bool
     start_date: int
+
+@dataclass
+class TournamentSeason:
+    id: int
+    name: str
+    year: str
