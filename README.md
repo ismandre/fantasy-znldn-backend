@@ -37,13 +37,66 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 [http://localhost:9000/docs](http://localhost:9000/docs
 
 ## MVP API Proposal
-
-- POST /users
-- POST /auth/login
-- GET /players
-- GET /players/{player_id}
-- GET /matches/upcoming
-- GET /matches/{match_id}
-- GET /users/{user_id}/squad
-- POST /users/{user_id}/squad
-- GET /leaderboard
+- [ ] POST /users
+  - [X] define endpoint
+  - [ ] define service layer
+  - [ ] define repository layer
+  - [ ] connect endpoint to service layer
+  - [ ] connect service layer to repository layer
+  - [ ] implement actual repository layer
+- [ ] POST /auth/login
+  - [X] define endpoint
+  - [ ] define service layer
+  - [ ] define repository layer
+  - [ ] connect endpoint to service layer
+  - [ ] connect service layer to repository layer
+  - [ ] implement actual repository layer
+- [ ] GET  /players
+  - [X] define endpoint
+  - [ ] define service layer
+  - [ ] define repository layer
+  - [ ] connect endpoint to service layer
+  - [ ] connect service layer to repository layer
+  - [ ] implement actual repository layer
+- [ ] GET  /players/{player_id}
+  - [X] define endpoint
+  - [ ] define service layer
+  - [ ] define repository layer
+  - [ ] connect endpoint to service layer
+  - [ ] connect service layer to repository layer
+  - [ ] implement actual repository layer
+- [ ] GET  /matches/upcoming
+  - [X] define ednpoint
+  - [ ] define service layer
+  - [ ] define repository layer
+  - [ ] connect endpoint to service layer
+  - [ ] connect service layer to repository layer
+  - [ ] implement actual repository layer
+- [ ] GET  /matches/{match_id}
+  - [X] define endpoint
+  - [ ] define service layer
+  - [ ] define repository layer
+  - [ ] connect endpoint to service layer
+  - [ ] connect service layer to repository layer
+  - [ ] implement actual repository layer
+- [ ] GET  /users/{user_id}/squad
+  - [X] define endpoint
+  - [ ] define service layer
+  - [ ] define repository layer
+  - [ ] connect endpoint to service layer
+  - [ ] connect service layer to repository layer
+  - [ ] implement actual repository layer
+- [ ] POST /users/{user_id}/squad
+  - [X] define endpoint
+  - [ ] define service layer
+  - [ ] define repository layer
+  - [ ] connect endpoint to service layer
+  - [ ] connect service layer to repository layer
+  - [ ] implement actual repository layer
+- [ ] GET  /leaderboard
+  - [X] define endpoint
+  - [ ] define service layer
+  - [ ] define repository layer
+  - [ ] connect endpoint to service layer
+  - [ ] connect service layer to repository layer
+  - [ ] implement actual repository layer
