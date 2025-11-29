@@ -2,7 +2,9 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
 
+from domain.errors.round import TournamentSeasonNotFoundError
 from domain.errors.tournament import TournamentNotFoundError
+from serializers.round import TournamentRoundsSerializer, TournamentRoundSerializer
 from serializers.season import SeasonSerializer
 from serializers.tournament import TournamentSerializer
 from services.deps import get_tournament_service
@@ -38,9 +40,31 @@ async def get_tournament_info(
 async def get_tournament_seasons(
         tournament_id: int,
         service: Annotated[TournamentService, Depends(get_tournament_service)]
-):
+) -> list[SeasonSerializer]:
     try:
         seasons = await service.get_tournament_seasons(tournament_id)
     except TournamentNotFoundError as e:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
     return [SeasonSerializer.model_validate(season) for season in seasons]
+
+@router.get(
+    path="/{tournament_id}/seasons/{season_id}/rounds",
+    name="Get tournament rounds for a given season",
+    response_model=TournamentRoundsSerializer,
+    status_code=status.HTTP_200_OK
+)
+async def get_tournament_rounds(
+        tournament_id: int,
+        season_id: int,
+        service: Annotated[TournamentService, Depends(get_tournament_service)]
+) -> TournamentRoundsSerializer:
+    try:
+        rounds = await service.get_tournament_rounds(tournament_id, season_id)
+    except TournamentNotFoundError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+    except TournamentSeasonNotFoundError as e:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+    return TournamentRoundsSerializer(
+        current_round=TournamentRoundSerializer.model_validate(rounds["current_round"]),
+        rounds=[TournamentRoundSerializer.model_validate(round) for round in rounds["rounds"]]
+    )
