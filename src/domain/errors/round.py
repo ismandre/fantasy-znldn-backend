@@ -1,4 +1,3 @@
-class TournamentSeasonNotFoundError(Exception):
-    """Exception raised for tournament season not found."""
-
+class RoundNotFoundError(Exception):
+    """Exception raised for round not found."""
     pass
