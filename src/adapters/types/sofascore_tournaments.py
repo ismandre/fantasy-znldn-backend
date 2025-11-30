@@ -27,3 +27,46 @@ class TournamentRoundResponse(TypedDict):
 class UniqueTournamentSeasonRoundsResponse(TypedDict):
     currentRound: TournamentRoundResponse
     rounds: list[TournamentRoundResponse]
+
+
+class RoundEventTeam(TypedDict):
+    id: int
+    name: str
+
+class RoundEventScore(TypedDict):
+    current: int
+    display: int
+    period1: int
+    period2: int
+    normaltime: int
+
+class RoundEventStatus(TypedDict):
+    code: int
+    description: str
+    type: str
+
+class RoundEventInfo(TypedDict):
+    round: int
+
+class RoundEventTournament(TypedDict):
+    id: int
+    name: str
+
+class RoundEventSeason(TypedDict):
+    id: int
+    name: str
+    year: str
+
+class RoundEvent(TypedDict):
+    tournament: RoundEventTournament
+    season: RoundEventSeason
+    homeTeam: RoundEventTeam
+    awayTeam: RoundEventTeam
+    homeScore: RoundEventScore
+    awayScore: RoundEventScore
+    startTimestamp: int
+    status: RoundEventStatus
+    roundInfo: RoundEventInfo
+
+class UniqueTournamentSeasonEventsRoundResponse(TypedDict):
+    events: list[RoundEvent]
