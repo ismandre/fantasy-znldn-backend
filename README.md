@@ -146,3 +146,8 @@ The API will be available at [http://localhost:9000](http://localhost:9000).
 5. For each match, retrieve incidents (goals, cards, ...) happened at that match
 
 - https://api.sofascore.com/api/v1/event/14526964/incidents
+
+
+[ ] Retrieve list of players for each team from
+
+- https://www.sofascore.com/api/v1/team/368217/players
