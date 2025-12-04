@@ -7,6 +7,7 @@ class UniqueTournament(TypedDict):
     hasRounds: bool
     startDateTimestamp: int
 
+
 class TournamentSeasonResponse(TypedDict):
     id: int
     name: str
@@ -24,6 +25,7 @@ class UniqueTournamentSeasonsResponse(TypedDict):
 class TournamentRoundResponse(TypedDict):
     round: int
 
+
 class UniqueTournamentSeasonRoundsResponse(TypedDict):
     currentRound: TournamentRoundResponse
     rounds: list[TournamentRoundResponse]
@@ -33,6 +35,7 @@ class RoundEventTeam(TypedDict):
     id: int
     name: str
 
+
 class RoundEventScore(TypedDict):
     current: int
     display: int
@@ -40,22 +43,27 @@ class RoundEventScore(TypedDict):
     period2: int
     normaltime: int
 
+
 class RoundEventStatus(TypedDict):
     code: int
     description: str
     type: str
 
+
 class RoundEventInfo(TypedDict):
     round: int
+
 
 class RoundEventTournament(TypedDict):
     id: int
     name: str
 
+
 class RoundEventSeason(TypedDict):
     id: int
     name: str
     year: str
+
 
 class RoundEvent(TypedDict):
     tournament: RoundEventTournament
@@ -67,6 +75,7 @@ class RoundEvent(TypedDict):
     startTimestamp: int
     status: RoundEventStatus
     roundInfo: RoundEventInfo
+
 
 class UniqueTournamentSeasonEventsRoundResponse(TypedDict):
     events: list[RoundEvent]
