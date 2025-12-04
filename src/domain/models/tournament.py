@@ -9,6 +9,7 @@ class Tournament:
     has_rounds: Optional[bool] = None
     start_date: Optional[int] = None
 
+
 @dataclass
 class TournamentSeason:
     id: int
