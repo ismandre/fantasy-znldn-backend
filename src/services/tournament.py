@@ -11,11 +11,21 @@ class TournamentService:
     async def get_tournament(self, tournament_id: int) -> Tournament:
         return await self.tournament_repository.get(tournament_id)
 
-    async def get_tournament_seasons(self, tournament_id: int) -> list[TournamentSeason]:
+    async def get_tournament_seasons(
+        self, tournament_id: int
+    ) -> list[TournamentSeason]:
         return await self.tournament_repository.get_tournament_seasons(tournament_id)
 
-    async def get_tournament_rounds(self, tournament_id, season_id) -> dict[str, TournamentRound | list[TournamentRound]]:
-        return await self.tournament_repository.get_tournament_rounds(tournament_id, season_id)
+    async def get_tournament_rounds(
+        self, tournament_id: int, season_id: int
+    ) -> dict[str, TournamentRound | list[TournamentRound]]:
+        return await self.tournament_repository.get_tournament_rounds(
+            tournament_id, season_id
+        )
 
-    async def get_tournament_round_events(self, tournament_id: int, season_id: int, round_number: int) -> list[Event]:
-        return await self.tournament_repository.get_tournament_round_events(tournament_id, season_id, round_number)
+    async def get_tournament_round_events(
+        self, tournament_id: int, season_id: int, round_number: int
+    ) -> list[Event]:
+        return await self.tournament_repository.get_tournament_round_events(
+            tournament_id, season_id, round_number
+        )
