@@ -8,6 +8,7 @@ class PlayerPosition(StrEnum):
     MIDFIELDER = "M"
     FORWARD = "F"
 
+
 @dataclass
 class Player:
     id: int
