@@ -17,11 +17,15 @@ class TournamentRepository(ABC):
         pass
 
     @abstractmethod
-    async def get_tournament_rounds(self, tournament_id, season_id) -> dict[str, TournamentRound | list[TournamentRound]]:
+    async def get_tournament_rounds(
+        self, tournament_id: int, season_id: int
+    ) -> dict[str, TournamentRound | list[TournamentRound]]:
         """Get tournament rounds by tournament id and season id."""
         pass
 
     @abstractmethod
-    async def get_tournament_round_events(self, tournament_id: int, season_id: int, round_number: int) -> list[Event]:
+    async def get_tournament_round_events(
+        self, tournament_id: int, season_id: int, round_number: int
+    ) -> list[Event]:
         """Get tournament round events by tournament id, season id and round number."""
         pass
